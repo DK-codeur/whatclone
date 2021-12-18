@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:whatclone/widgets/chat/messages.dart';
+import 'package:whatclone/widgets/chat/new_messages_input.dart';
 
 class ChatConversation extends StatelessWidget {
   const ChatConversation({key}) : super(key: key);
@@ -10,7 +11,9 @@ class ChatConversation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFECE5DD),
       appBar: AppBar(
+        leadingWidth: 30,
         title: ListTile(
           contentPadding: EdgeInsets.zero,
           // horizontalTitleGap: 0,
@@ -37,19 +40,24 @@ class ChatConversation extends StatelessWidget {
 
         actions: [
           IconButton(
-            onPressed: () {
-              Firestore.instance
-              .collection("chats/2xHaiHmPy7ZhOcLFJ8rS/messages")
-              .add({
-                "text" : "add data"
-              });
-            }, 
-            icon: Icon(Icons.add)
+            onPressed: () {}, 
+            icon: Icon(Icons.videocam_sharp)
+          ),
+
+          IconButton(
+            onPressed: () {}, 
+            icon: Icon(Icons.call)
           )
         ]
       ),
-      body: Container(
-        child: Messages(),
+      body: Column(
+        children: [
+          Expanded(
+            child: Messages(),
+          ),
+
+          NewMessageInput()
+        ],
       )
     );
   }
